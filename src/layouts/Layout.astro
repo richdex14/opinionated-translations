@@ -37,7 +37,7 @@ const { title, description } = Astro.props;
   <body>
     <header style={{ padding: '1rem 2rem', borderBottom: '1px solid #e5e5e5' }}>
       <nav>
-        <a href="/" style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Home</a>
+        <a href={import.meta.env.BASE_URL} style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Home</a>
       </nav>
     </header>
     <main style={{ maxWidth: '720px', margin: '0 auto', padding: '2rem' }}>

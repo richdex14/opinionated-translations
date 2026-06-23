@@ -12,7 +12,7 @@ posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).get
   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
     {posts.map((post) => (
       <article style={{ borderBottom: '1px solid #e5e5e5', paddingBottom: '1.5rem' }}>
-        <a href={`/posts/${post.id}`}>
+        <a href={`${import.meta.env.BASE_URL}/posts/${post.id}/`}>
           <h2 style={{ marginBottom: '0.5rem' }}>{post.data.title}</h2>
         </a>
         {post.data.description && <p style={{ color: '#666', marginBottom: '0.5rem' }}>{post.data.description}</p>}
