@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import Toggle from '../../components/Toggle.jsx';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const slug = Astro.params.slug;
+const post = await getEntry('posts', slug);
+
+if (!post) {
+  return Astro.response.redirect('/posts/');
+}
+
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <div style={{ marginBottom: '2rem' }}>
+    <a href="/posts/" style={{ fontSize: '0.875rem', color: '#666' }}>← Back to posts</a>
+  </div>
+  <h1>{post.data.title}</h1>
+  {post.data.description && <p style={{ color: '#666', marginBottom: '2rem' }}>{post.data.description}</p>}
+  <time datetime={post.data.date.toISOString()} style={{ fontSize: '0.875rem', color: '#999', marginBottom: '2rem', display: 'block' }}>
+    {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+  </time>
+  <Content components={{ Toggle }} />
+</Layout>
