@@ -43,7 +43,7 @@ const { title, description } = Astro.props;
         <span style={{ color: '#ccc' }}>|</span>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           {bands.map((band) => (
-            <a href={`${import.meta.env.BASE_URL}bands/${band.id}`} style={{ fontSize: '0.875rem' }}>{band.name}</a>
+            <a href={`${import.meta.env.BASE_URL}/bands/${band.id}`} style={{ fontSize: '0.875rem' }}>{band.name}</a>
           ))}
         </div>
       </nav>

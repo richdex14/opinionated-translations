@@ -27,9 +27,9 @@ const { Content } = await render(song);
 <Layout title={song.data.title}>
   <div style={{ marginBottom: '2rem' }}>
     {album ? (
-      <a href={`${import.meta.env.BASE_URL}albums/${band.id}/${album.id}/`} style={{ fontSize: '0.875rem', color: '#666' }}>← Back to {album.name}</a>
+      <a href={`${import.meta.env.BASE_URL}/albums/${band.id}/${album.id}/`} style={{ fontSize: '0.875rem', color: '#666' }}>← Back to {album.name}</a>
     ) : (
-      <a href={`${import.meta.env.BASE_URL}bands/${band.id}`} style={{ fontSize: '0.875rem', color: '#666' }}>← Back to {band.name}</a>
+      <a href={`${import.meta.env.BASE_URL}/bands/${band.id}`} style={{ fontSize: '0.875rem', color: '#666' }}>← Back to {band.name}</a>
     )}
   </div>
   <h1>{song.data.title}</h1>
