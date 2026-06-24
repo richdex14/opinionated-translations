@@ -15,4 +15,19 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+const songs = defineCollection({
+  loader: glob({
+    base: './src/content/songs',
+    pattern: '**/*.{md,mdx}',
+  }),
+  schema: z.object({
+    title: z.string(),
+    band: z.string(),
+    album: z.string().optional(),
+    description: z.string().optional(),
+    date: z.date(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { posts, songs };

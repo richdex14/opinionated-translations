@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import Toggle from '../../components/Toggle.jsx';
+import { bands } from '../../data/bands.js';
+
+export async function getStaticPaths() {
+  const songs = await getCollection('songs');
+  return songs.map((song) => ({
+    params: { slug: song.id },
+  }));
+}
+
+const slug = Astro.params.slug;
+const song = await getEntry('songs', slug);
+
+if (!song) {
+  return Astro.response.redirect(`${import.meta.env.BASE_URL}`);
+}
+
+const band = bands.find((b) => b.id === song.data.band);
+const album = band?.albums.find((a) => a.id === song.data.album);
+
+const { Content } = await render(song);
+---
+
+<Layout title={song.data.title}>
+  <div style={{ marginBottom: '2rem' }}>
+    {album ? (
+      <a href={`${import.meta.env.BASE_URL}albums/${band.id}/${album.id}/`} style={{ fontSize: '0.875rem', color: '#666' }}>← Back to {album.name}</a>
+    ) : (
+      <a href={`${import.meta.env.BASE_URL}bands/${band.id}`} style={{ fontSize: '0.875rem', color: '#666' }}>← Back to {band.name}</a>
+    )}
+  </div>
+  <h1>{song.data.title}</h1>
+  {band && <p style={{ color: '#666', marginBottom: '0.5rem' }}>{band.name}{album ? ` — ${album.name}` : ''}</p>}
+  {song.data.description && <p style={{ color: '#666', marginBottom: '2rem' }}>{song.data.description}</p>}
+  <time datetime={song.data.date.toISOString()} style={{ fontSize: '0.875rem', color: '#999', marginBottom: '2rem', display: 'block' }}>
+    {song.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+  </time>
+  <Content components={{ Toggle }} />
+  <script src={`${import.meta.env.BASE_URL}/scripts/toggle.js`} defer></script>
+</Layout>

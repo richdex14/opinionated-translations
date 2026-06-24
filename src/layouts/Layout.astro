@@ -1,4 +1,6 @@
 ---
+import { bands } from '../data/bands.js';
+
 interface Props {
   title: string;
   description?: string;
@@ -36,15 +38,21 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <header style={{ padding: '1rem 2rem', borderBottom: '1px solid #e5e5e5' }}>
-      <nav>
-        <a href={import.meta.env.BASE_URL} style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Home</a>
+      <nav style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <a href={import.meta.env.BASE_URL} style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Opinionated Translations</a>
+        <span style={{ color: '#ccc' }}>|</span>
+        <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+          {bands.map((band) => (
+            <a href={`${import.meta.env.BASE_URL}bands/${band.id}`} style={{ fontSize: '0.875rem' }}>{band.name}</a>
+          ))}
+        </div>
       </nav>
     </header>
     <main style={{ maxWidth: '720px', margin: '0 auto', padding: '2rem' }}>
       <slot />
     </main>
     <footer style={{ padding: '2rem', borderTop: '1px solid #e5e5e5', textAlign: 'center', color: '#666', fontSize: '0.875rem' }}>
-      <p>Built with Astro</p>
+      <p>Opinionated Translations</p>
     </footer>
   </body>
 </html>
