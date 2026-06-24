@@ -10,7 +10,7 @@ const band = bands.find((b) => b.id === 'sukekiyo');
   <p style={{ color: '#666', marginBottom: '2rem' }}>Albums and song translations</p>
   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
     {band.albums.map((album) => (
-      <a href={`${import.meta.env.BASE_URL}/albums/${album.id}/`} style={{ padding: '1rem', border: '1px solid #e5e5e5', borderRadius: '8px' }}>
+      <a href={`${import.meta.env.BASE_URL}/albums/${band.id}/${album.id}/`} style={{ padding: '1rem', border: '1px solid #e5e5e5', borderRadius: '8px' }}>
         <strong>{album.name}</strong> <span style={{ color: '#999' }}>({album.year})</span>
       </a>
     ))}
