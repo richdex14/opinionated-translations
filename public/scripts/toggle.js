@@ -1,13 +1,25 @@
+const groupState = {};
+
 class ToggleElement extends HTMLElement {
   connectedCallback() {
     const trigger = this.querySelector('.toggle-trigger');
     const content = this.querySelector('.toggle-content');
-    let visible = false;
+    const group = this.getAttribute('data-group');
 
-    trigger.addEventListener('click', () => {
-      visible = !visible;
-      content.style.display = visible ? 'inline' : 'none';
-    });
+    if (trigger) {
+      trigger.addEventListener('click', () => {
+        if (group) {
+          groupState[group] = !groupState[group];
+          document.querySelectorAll(`toggle-el[data-group="${group}"]`).forEach((el) => {
+            const c = el.querySelector('.toggle-content');
+            if (c) c.style.display = groupState[group] ? 'inline' : 'none';
+          });
+        } else {
+          const visible = content.style.display !== 'none';
+          content.style.display = visible ? 'none' : 'inline';
+        }
+      });
+    }
   }
 }
 

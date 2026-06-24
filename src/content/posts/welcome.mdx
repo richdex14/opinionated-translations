@@ -7,6 +7,8 @@ tags: ['demo', 'astro']
 
 This is your first blog post! The Toggle component lets you hide and reveal text inline.
 
+## Simple Toggle
+
 Click the text below to reveal a hidden message:
 
 <toggle-el>
@@ -14,18 +16,33 @@ Click the text below to reveal a hidden message:
   <span class="toggle-content" style="display:none">This text was hidden until you clicked!</span>
 </toggle-el>
 
-You can also use it mid-sentence. The quick brown fox <toggle-el><button class="toggle-trigger" style="background:none;border:none;cursor:pointer;color:inherit;text-decoration:underline;text-underline-offset:3px;padding:0 2px;margin:0 1px;font-size:inherit;font-family:inherit">jumps</button><span class="toggle-content" style="display:none">actually leaps gracefully</span></toggle-el> over the lazy dog.
+## Grouped Toggles
+
+You can group toggles together so one button controls multiple blocks. Click the button below to reveal all the "spoiler" content scattered throughout this section:
+
+<toggle-el data-group="spoilers">
+  <button class="toggle-trigger" style="background:none;border:none;cursor:pointer;color:inherit;text-decoration:underline;text-underline-offset:3px;padding:0 2px;margin:0 1px;font-size:inherit;font-family:inherit">[Show all spoilers]</button>
+  <span class="toggle-content" style="display:none">Spoiler 1: The cake was a lie.</span>
+</toggle-el>
+
+Here's some regular text between the spoilers. Nothing hidden here... or is there?
+
+<toggle-el data-group="spoilers">
+  <span class="toggle-content" style="display:none">Spoiler 2: There's a secret passage behind the bookshelf.</span>
+</toggle-el>
+
+Keep reading... still nothing? Well, maybe:
+
+<toggle-el data-group="spoilers">
+  <span class="toggle-content" style="display:none">Spoiler 3: The real treasure was the friends we made along the way.</span>
+</toggle-el>
+
+Click "[Show all spoilers]" above again to hide them all.
 
 ## Features
 
 - **Static-first**: Pages are pre-rendered for speed
 - **MDX content**: Write posts in Markdown with custom elements
 - **Toggle component**: Inline show/hide for interactive text
+- **Grouped toggles**: One button controls multiple hidden blocks
 - **Content collections**: Type-safe content management
-
-Here's another toggle with a longer trigger:
-
-<toggle-el>
-  <button class="toggle-trigger" style="background:none;border:none;cursor:pointer;color:inherit;text-decoration:underline;text-underline-offset:3px;padding:0 2px;margin:0 1px;font-size:inherit;font-family:inherit">[show explanation]</button>
-  <span class="toggle-content" style="display:none">This is how you can provide expandable explanations without cluttering the main text. Readers who want more detail can click to expand.</span>
-</toggle-el>
