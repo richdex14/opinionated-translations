@@ -39,6 +39,18 @@ Keep reading... still nothing? Well, maybe:
 
 Click "[Show all spoilers]" above again to hide them all.
 
+## Inline Grouped Toggles
+
+Grouped toggles also work inline within sentences. Click the button below to reveal hidden words scattered through this paragraph:
+
+<toggle-el data-group="secret-words">
+  <button class="toggle-trigger" style="background:none;border:none;cursor:pointer;color:inherit;text-decoration:underline;text-underline-offset:3px;padding:0 2px;margin:0 1px;font-size:inherit;font-family:inherit">[Reveal hidden words]</button>
+</toggle-el>
+
+The <toggle-el data-group="secret-words"><span class="toggle-content" style="display:none">mysterious</span></toggle-el> stranger walked into the <toggle-el data-group="secret-words"><span class="toggle-content" style="display:none">abandoned</span></toggle-el> building, his eyes scanning every <toggle-el data-group="secret-words"><span class="toggle-content" style="display:none">shadowed</span></toggle-el> corner. Nothing seemed <toggle-el data-group="secret-words"><span class="toggle-content" style="display:none">ordinary</span></toggle-el> about this place.
+
+Click "[Reveal hidden words]" again to hide them.
+
 ## Features
 
 - **Static-first**: Pages are pre-rendered for speed
